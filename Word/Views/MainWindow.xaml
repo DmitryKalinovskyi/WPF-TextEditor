@@ -1,0 +1,93 @@
+﻿<RibbonWindow x:Class="Word.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Word"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+                 WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--<RowDefinition Height="60"/>-->
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <!--<Ribbon Grid.Row="0" Margin="1,1,1,1">
+            <Ribbon.HelpPaneContent>
+                <RibbonButton SmallImageSource="../Images/add.png" KeyTip="F"/>
+            </Ribbon.HelpPaneContent>
+
+            <Ribbon.QuickAccessToolBar>
+                <RibbonQuickAccessToolBar>
+                    <RibbonButton/>
+                    <RibbonSplitButton x:Name="Undo" >
+                        <RibbonSplitMenuItem Header="Undo1"></RibbonSplitMenuItem>
+                    </RibbonSplitButton>
+                    <RibbonSplitButton x:Name="Redo" >
+                        <RibbonSplitMenuItem Header="Redo1"></RibbonSplitMenuItem>
+                    </RibbonSplitButton>
+                </RibbonQuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>
+
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu>
+                    <RibbonApplicationMenuItem Header="Create" KeyTip="C"/>
+                    <RibbonApplicationMenuItem Header="Open" KeyTip="O"/>
+                    <RibbonApplicationMenuItem Header="Print" KeyTip="P"/>
+                    <RibbonApplicationMenuItem Header="Properties" />
+                    <RibbonApplicationMenuItem Header="Close"/>
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+
+            <RibbonTab Header="Home">
+                --><!-- Home/Clipboard group--><!--
+                <RibbonGroup Header="Clipboard">
+                    <RibbonMenuButton Label="Paste" KeyTip="V" >
+                        <RibbonMenuItem Header="Keep Text Only" KeyTip="T" />
+                        <RibbonMenuItem Header="Paste Special..."
+KeyTip="S"/>
+                    </RibbonMenuButton>
+                    <RibbonButton  Label="Cut" KeyTip="X" />
+                    <RibbonButton  Label="Copy" KeyTip="C" />
+                </RibbonGroup>
+
+                --><!-- Home/Colors group--><!--
+                <RibbonGroup x:Name="fonts" Header="Fonts" Width="Auto" >
+                    <RibbonControlGroup>
+                        <ComboBox ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
+Text="Select Font..." IsEditable="True"/>
+                        <ComboBox x:Name="_fontSize" Text="Size..." IsEditable="True"></ComboBox>
+                    </RibbonControlGroup>
+                    <RibbonControlGroup>
+                        <RibbonButton KeyTip="B" />
+                        <RibbonButton KeyTip="I" />
+                        <RibbonButton KeyTip="U" />
+                        <RibbonButton KeyTip="A"/>
+                    </RibbonControlGroup>
+                </RibbonGroup>
+                <RibbonGroup x:Name="paragraph" Header="Paragraph">
+                    <RibbonControlGroup>
+                        <RibbonButton />
+                        <RibbonButton />
+                        <RibbonButton  />
+                    </RibbonControlGroup>
+
+                    <RibbonControlGroup>
+                        <RibbonButton />
+                    </RibbonControlGroup>
+                </RibbonGroup>
+
+            </RibbonTab>
+        </Ribbon> 
+        <TextBox Grid.Row="1" >
+            
+        </TextBox>
+        --><!--<ui:TitleBar Title="MainWindow">
+            
+        </ui:TitleBar>-->
+    </Grid>
+</RibbonWindow>
