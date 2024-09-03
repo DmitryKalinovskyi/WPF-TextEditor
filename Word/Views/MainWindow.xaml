@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Word"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:vm="clr-namespace:Word.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
                  WindowStartupLocation="CenterScreen">
+    <ui:FluentWindow.DataContext>
+        <vm:MainWindowViewModel/>
+    </ui:FluentWindow.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
@@ -126,7 +130,9 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
 
-                                <Button Grid.Column="0">
+                                <Button Grid.Column="0"
+                                        Command="{x:Static ApplicationCommands.Paste}"
+                                        CommandTarget="{Binding ElementName=_richTextBox}">
                                     <StackPanel >
                                         <Border Width="31" HorizontalAlignment="Center">
                                             <StaticResource ResourceKey="PasteIcon48"/>
@@ -138,27 +144,26 @@
                                 </Button>
                                 
                                 <StackPanel Grid.Column="1">
-                                    <Button >
+                                    <Button Command="{x:Static ApplicationCommands.Cut}"
+                                            CommandTarget="{Binding ElementName=_richTextBox}">
                                         
-                                    <StackPanel Orientation="Horizontal">
-                                            <Border Width="12" VerticalAlignment="Center" Margin="0, 0, 2, 0">
-                                            <StaticResource ResourceKey="CutIcon24"/>
-                                        </Border>
-                                        <TextBlock VerticalAlignment="Center">
-    Cut
-                                        </TextBlock>
-                                    </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                                <Border Width="12" VerticalAlignment="Center" Margin="0, 0, 2, 0">
+                                                <StaticResource ResourceKey="CutIcon24"/>
+                                            </Border>
+                                            <TextBlock VerticalAlignment="Center">
+        Cut
+                                            </TextBlock>
+                                        </StackPanel>
                                     </Button>
-                                    <Button>
-                                        
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border Width="12" VerticalAlignment="Center" Margin="0, 0, 2, 0">
-                                            <StaticResource ResourceKey="CopyIcon24"/>
-                                        </Border>
-                                        <TextBlock VerticalAlignment="Center">
-    Copy
-                                        </TextBlock>
-                                    </StackPanel>
+                                    <Button Command="{x:Static ApplicationCommands.Copy}"
+                                            CommandTarget="{Binding ElementName=_richTextBox}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Width="12" VerticalAlignment="Center" Margin="0, 0, 2, 0">
+                                                <StaticResource ResourceKey="CopyIcon24"/>
+                                            </Border>
+                                            <TextBlock VerticalAlignment="Center">Copy</TextBlock>
+                                        </StackPanel>
                                     </Button>
 
                                 </StackPanel>
@@ -169,28 +174,44 @@
                         <Separator/>
                         <DockPanel Style="{StaticResource DockStyle}">
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                                
-                            <ComboBox ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
-Text="Select Font..." IsEditable="True"/>
-                            <ComboBox x:Name="_fontSize" Text="Size..." IsEditable="True"></ComboBox>
+                                <RibbonControlGroup>
+                                    
+                                <ComboBox ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
+                                          SelectionChanged="ComboBox_SelectionChanged"
+                                          Text="Select Font..."
+                                          IsEditable="True"/>
+                                <ComboBox x:Name="_fontSize"
+                                          
+                                          Text="Size..."
+                                          IsEditable="True"
+                                          SelectionChanged="_fontSize_SelectionChanged"
+                                          ItemsSource="{Binding FontSizes}"/>
+                                </RibbonControlGroup>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                                <Button Style="{StaticResource ToolButton}">
+                                <RibbonButton Style="{StaticResource ToolButton}"
+                                        CommandTarget="{Binding ElementName=_richTextBox}"
+                                        Command="{x:Static EditingCommands.ToggleBold}">
                                     <StaticResource ResourceKey="BoldIcon24"/>
-                                </Button>
-                                <Button Style="{StaticResource ToolButton}">
+                                </RibbonButton>
+                                <RibbonButton Style="{StaticResource ToolButton}"
+                                        CommandTarget="{Binding ElementName=_richTextBox}"
+                                        Command="{x:Static EditingCommands.ToggleItalic}">
                                     <StaticResource ResourceKey="ItalicIcon30"/>
-                                </Button>
-                                <Button Style="{StaticResource ToolButton}">
+                                </RibbonButton>
+                                <RibbonButton Style="{StaticResource ToolButton}" 
+                                        CommandTarget="{Binding ElementName=_richTextBox}"
+                                        Command="{x:Static EditingCommands.ToggleUnderline}">
                                     <StaticResource ResourceKey="UnderlineIcon25"/>
-                                </Button>
+                                </RibbonButton>
                             </StackPanel>
                             <TextBlock Style="{StaticResource DockSub}">Fonts</TextBlock>
                         </DockPanel>
-                        <!--<Separator/>
+                        <Separator/>
                         <DockPanel Style="{StaticResource DockStyle}">
+                            
                             <TextBlock Style="{StaticResource DockSub}">Paragraph</TextBlock>
-                        </DockPanel>-->
+                        </DockPanel>
                     </StackPanel>
                 </Border>
             </TabItem>
@@ -199,7 +220,7 @@ Text="Select Font..." IsEditable="True"/>
             </TabItem>
         </TabControl>
 
-        <RichTextBox Grid.Row="2">
+        <RichTextBox Grid.Row="2" x:Name="_richTextBox">
             
         </RichTextBox>
         <!--<TextBox Grid.Row="2">
