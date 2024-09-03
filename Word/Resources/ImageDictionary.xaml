@@ -1,0 +1,126 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:clr="clr-namespace:System;assembly=mscorlib">
+
+    <!-- ImageSource resources for paths -->
+    <ImageSource x:Key="BoldIcon24Source">../Images/icons8-bold-24.png</ImageSource>
+    <ImageSource x:Key="BoldIcon48Source">../Images/icons8-bold-48.png</ImageSource>
+    <ImageSource x:Key="BoldIcon96Source">../Images/icons8-bold-96.png</ImageSource>
+
+    <ImageSource x:Key="CopyIcon24Source">../Images/icons8-copy-24.png</ImageSource>
+    <ImageSource x:Key="CopyIcon48Source">../Images/icons8-copy-48.png</ImageSource>
+    <ImageSource x:Key="CopyIcon96Source">../Images/icons8-copy-96.png</ImageSource>
+
+    <ImageSource x:Key="CutIcon24Source">../Images/icons8-cut-24.png</ImageSource>
+    <ImageSource x:Key="CutIcon48Source">../Images/icons8-cut-48.png</ImageSource>
+    <ImageSource x:Key="CutIcon96Source">../Images/icons8-cut-96.png</ImageSource>
+
+    <ImageSource x:Key="HomeIcon24Source">../Images/icons8-home-24.png</ImageSource>
+    <ImageSource x:Key="HomeIcon48Source">../Images/icons8-home-48.png</ImageSource>
+    <ImageSource x:Key="HomeIcon96Source">../Images/icons8-home-96.png</ImageSource>
+
+    <ImageSource x:Key="ItalicIcon30Source">../Images/icons8-italic-30.png</ImageSource>
+    <ImageSource x:Key="ItalicIcon60Source">../Images/icons8-italic-60.png</ImageSource>
+    <ImageSource x:Key="ItalicIcon90Source">../Images/icons8-italic-90.png</ImageSource>
+
+    <ImageSource x:Key="OptionsIcon24Source">../Images/icons8-options-24.png</ImageSource>
+    <ImageSource x:Key="OptionsIcon48Source">../Images/icons8-options-48.png</ImageSource>
+    <ImageSource x:Key="OptionsIcon96Source">../Images/icons8-options-96.png</ImageSource>
+
+    <ImageSource x:Key="PasteIcon24Source">../Images/icons8-paste-24.png</ImageSource>
+    <ImageSource x:Key="PasteIcon48Source">../Images/icons8-paste-48.png</ImageSource>
+    <ImageSource x:Key="PasteIcon96Source">../Images/icons8-paste-96.png</ImageSource>
+
+    <ImageSource x:Key="RedoIcon24Source">../Images/icons8-redo-24.png</ImageSource>
+    <ImageSource x:Key="RedoIcon48Source">../Images/icons8-redo-48.png</ImageSource>
+    <ImageSource x:Key="RedoIcon96Source">../Images/icons8-redo-96.png</ImageSource>
+
+    <ImageSource x:Key="SaveIcon24Source">../Images/icons8-save-24.png</ImageSource>
+    <ImageSource x:Key="SaveIcon48Source">../Images/icons8-save-48.png</ImageSource>
+    <ImageSource x:Key="SaveIcon96Source">../Images/icons8-save-96.png</ImageSource>
+
+    <ImageSource x:Key="UnderlineIcon25Source">../Images/icons8-underline-25.png</ImageSource>
+    <ImageSource x:Key="UnderlineIcon50Source">../Images/icons8-underline-50.png</ImageSource>
+    <ImageSource x:Key="UnderlineIcon100Source">../Images/icons8-underline-100.png</ImageSource>
+
+    <!-- Image resources using the ImageSource paths -->
+    <Image x:Key="BoldIcon24" Source="{StaticResource BoldIcon24Source}"/>
+    <Image x:Key="BoldIcon48" Source="{StaticResource BoldIcon48Source}"/>
+    <Image x:Key="BoldIcon96" Source="{StaticResource BoldIcon96Source}"/>
+
+    <Image x:Key="CopyIcon24" Source="{StaticResource CopyIcon24Source}"/>
+    <Image x:Key="CopyIcon48" Source="{StaticResource CopyIcon48Source}"/>
+    <Image x:Key="CopyIcon96" Source="{StaticResource CopyIcon96Source}"/>
+
+    <Image x:Key="CutIcon24" Source="{StaticResource CutIcon24Source}"/>
+    <Image x:Key="CutIcon48" Source="{StaticResource CutIcon48Source}"/>
+    <Image x:Key="CutIcon96" Source="{StaticResource CutIcon96Source}"/>
+
+    <Image x:Key="HomeIcon24" Source="{StaticResource HomeIcon24Source}"/>
+    <Image x:Key="HomeIcon48" Source="{StaticResource HomeIcon48Source}"/>
+    <Image x:Key="HomeIcon96" Source="{StaticResource HomeIcon96Source}"/>
+
+    <Image x:Key="ItalicIcon30" Source="{StaticResource ItalicIcon30Source}"/>
+    <Image x:Key="ItalicIcon60" Source="{StaticResource ItalicIcon60Source}"/>
+    <Image x:Key="ItalicIcon90" Source="{StaticResource ItalicIcon90Source}"/>
+
+    <Image x:Key="OptionsIcon24" Source="{StaticResource OptionsIcon24Source}"/>
+    <Image x:Key="OptionsIcon48" Source="{StaticResource OptionsIcon48Source}"/>
+    <Image x:Key="OptionsIcon96" Source="{StaticResource OptionsIcon96Source}"/>
+
+    <Image x:Key="PasteIcon24" Source="{StaticResource PasteIcon24Source}"/>
+    <Image x:Key="PasteIcon48" Source="{StaticResource PasteIcon48Source}"/>
+    <Image x:Key="PasteIcon96" Source="{StaticResource PasteIcon96Source}"/>
+
+    <Image x:Key="RedoIcon24" Source="{StaticResource RedoIcon24Source}"/>
+    <Image x:Key="RedoIcon48" Source="{StaticResource RedoIcon48Source}"/>
+    <Image x:Key="RedoIcon96" Source="{StaticResource RedoIcon96Source}"/>
+
+    <Image x:Key="SaveIcon24" Source="{StaticResource SaveIcon24Source}"/>
+    <Image x:Key="SaveIcon48" Source="{StaticResource SaveIcon48Source}"/>
+    <Image x:Key="SaveIcon96" Source="{StaticResource SaveIcon96Source}"/>
+
+    <Image x:Key="UnderlineIcon25" Source="{StaticResource UnderlineIcon25Source}"/>
+    <Image x:Key="UnderlineIcon50" Source="{StaticResource UnderlineIcon50Source}"/>
+    <Image x:Key="UnderlineIcon100" Source="{StaticResource UnderlineIcon100Source}"/>
+
+    <!-- ImageSource resources for paper icons -->
+    <ImageSource x:Key="PaperIcon24Source">../Images/icons8-paper-24.png</ImageSource>
+    <ImageSource x:Key="PaperIcon48Source">../Images/icons8-paper-48.png</ImageSource>
+    <ImageSource x:Key="PaperIcon96Source">../Images/icons8-paper-96.png</ImageSource>
+
+    <!-- Image resources using the ImageSource paths -->
+    <Image x:Key="PaperIcon24" Source="{StaticResource PaperIcon24Source}"/>
+    <Image x:Key="PaperIcon48" Source="{StaticResource PaperIcon48Source}"/>
+    <Image x:Key="PaperIcon96" Source="{StaticResource PaperIcon96Source}"/>
+
+    <!-- ImageSource resources for opened folder icons -->
+    <ImageSource x:Key="OpenedFolderIcon24Source">../Images/icons8-opened-folder-24.png</ImageSource>
+    <ImageSource x:Key="OpenedFolderIcon48Source">../Images/icons8-opened-folder-48.png</ImageSource>
+    <ImageSource x:Key="OpenedFolderIcon96Source">../Images/icons8-opened-folder-96.png</ImageSource>
+
+    <!-- Image resources using the ImageSource paths -->
+    <Image x:Key="OpenedFolderIcon24" Source="{StaticResource OpenedFolderIcon24Source}"/>
+    <Image x:Key="OpenedFolderIcon48" Source="{StaticResource OpenedFolderIcon48Source}"/>
+    <Image x:Key="OpenedFolderIcon96" Source="{StaticResource OpenedFolderIcon96Source}"/>
+
+    <!-- ImageSource resources for print icons -->
+    <ImageSource x:Key="PrintIcon25Source">../Images/icons8-print-25.png</ImageSource>
+    <ImageSource x:Key="PrintIcon50Source">../Images/icons8-print-50.png</ImageSource>
+    <ImageSource x:Key="PrintIcon100Source">../Images/icons8-print-100.png</ImageSource>
+
+    <!-- Image resources using the ImageSource paths -->
+    <Image x:Key="PrintIcon25" Source="{StaticResource PrintIcon25Source}"/>
+    <Image x:Key="PrintIcon50" Source="{StaticResource PrintIcon50Source}"/>
+    <Image x:Key="PrintIcon100" Source="{StaticResource PrintIcon100Source}"/>
+
+    <!-- ImageSource resources for save-as icons -->
+    <ImageSource x:Key="SaveAsIcon24Source">../Images/icons8-save-as-24.png</ImageSource>
+    <ImageSource x:Key="SaveAsIcon48Source">../Images/icons8-save-as-48.png</ImageSource>
+    <ImageSource x:Key="SaveAsIcon96Source">../Images/icons8-save-as-96.png</ImageSource>
+
+    <!-- Image resources using the ImageSource paths -->
+    <Image x:Key="SaveAsIcon24" Source="{StaticResource SaveAsIcon24Source}"/>
+    <Image x:Key="SaveAsIcon48" Source="{StaticResource SaveAsIcon48Source}"/>
+    <Image x:Key="SaveAsIcon96" Source="{StaticResource SaveAsIcon96Source}"/>
+</ResourceDictionary>
