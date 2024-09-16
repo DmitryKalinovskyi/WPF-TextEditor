@@ -9,20 +9,91 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
                  WindowStartupLocation="CenterScreen">
+    <ui:FluentWindow.Resources>
+        <vm:MainWindowViewModel x:Key="mainWindowDataContext"/>
+    </ui:FluentWindow.Resources>
     <ui:FluentWindow.DataContext>
-        <vm:MainWindowViewModel/>
+        <StaticResource ResourceKey="mainWindowDataContext"/>
     </ui:FluentWindow.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ui:TitleBar Title="MainWindow">
         </ui:TitleBar>
-       
-        
-        <TabControl Grid.Row="1" SelectedIndex="1">
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Button Click="Button_Click"
+                            Margin="2, 2"
+                            >
+                <Button.ContextMenu>
+                    <ContextMenu StaysOpen="true" x:Name="ContextMenu" DataContext="{StaticResource mainWindowDataContext}">
+                        <!--<MenuItem Header="Open" Icon="{StaticResource }"/>-->
+                        <!--<MenuItem Header="Create" Click="MenuCreate_Click">
+                            <MenuItem.Icon>
+                                <Image Source="{StaticResource PaperIcon24Source}" Width="24"/>
+                            </MenuItem.Icon>
+                        </MenuItem>-->
+                        <MenuItem Header="Open"
+                                            Command="{Binding OpenDocumentCommand}">
+                            <MenuItem.Icon>
+                                <Image Source="{StaticResource OpenedFolderIcon24Source}" Width="25"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <!--<MenuItem Header="Print" Click="MenuPrint_Click" >
+                                <MenuItem.Icon>
+                                    <Image Source="{StaticResource PrintIcon25Source}" Width="24"/>
+                                </MenuItem.Icon>
+                            </MenuItem>-->
+                        <!--<MenuItem Header="Save" Click="MenuSave_Click" >
+                                <MenuItem.Icon>
+                                    <Image Source="{StaticResource SaveIcon24Source}" Width="24"/>
+                                </MenuItem.Icon>
+                            </MenuItem>-->
+                        <MenuItem Header="Save as"
+                                            Command="{Binding SaveAsCommand}">
+                            <MenuItem.Icon>
+                                <Image Source="{StaticResource SaveAsIcon24Source}" Width="24"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <!--<MenuItem Header="Preferences" Click="MenuPreferences_Click" >
+                            <MenuItem.Icon>
+                                <Image Source="{StaticResource OptionsIcon24Source}" Width="24"/>
+                            </MenuItem.Icon>
+                        </MenuItem>-->
+                        <!--<MenuItem Header="Recent Files">
+                                    <MenuItem Header="ReadMe.txt"/>
+                                    <MenuItem Header="Schedule.xls"/>
+                                </MenuItem>-->
+                    </ContextMenu>
+                </Button.ContextMenu>
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal" >
+                        <Border Width="16">
+                            <StaticResource ResourceKey="HomeIcon24"/>
+                        </Border>
+                        <!--<TextBlock VerticalAlignment="A">Home</TextBlock>-->
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Margin="2, 2" Command="{x:Static ApplicationCommands.Undo}"
+                                        CommandTarget="{Binding ElementName=DocumentTextBox}">
+                <Border Width="16">
+                    <StaticResource ResourceKey="UndoIcon24"/>
+                </Border>
+            </Button>
+            <Button Margin="2, 2" Command="{x:Static ApplicationCommands.Redo}"
+                                        CommandTarget="{Binding ElementName=DocumentTextBox}">
+                <Border Width="16">
+                    <StaticResource ResourceKey="RedoIcon24"/>
+                </Border>
+            </Button>
+        </StackPanel>
+
+        <TabControl Grid.Row="2">
             <TabControl.Resources>
                 <Style x:Key="ToolButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                     <Setter Property="Width" Value="36"/>
@@ -31,20 +102,20 @@
                     <!--<Setter Property="Margin" Value="0, 0, 4, 0"/>-->
                 </Style>
             </TabControl.Resources>
-            <TabItem>
+            <!--<TabItem>
                 <TabItem.Style>
                     <Style TargetType="TabItem">
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="TabItem">
                                     <Grid>
-                                        <!-- The content area that is not hit test visible -->
+                                        --><!-- The content area that is not hit test visible --><!--
                                         <Border 
                         Background="Transparent"
                         IsHitTestVisible="False">
-                                            <!-- You can set a background here if needed -->
+                                            --><!-- You can set a background here if needed --><!--
                                         </Border>
-                                        <!-- The interactive button -->
+                                        --><!-- The interactive button --><!--
                                         <ContentPresenter ContentSource="Header" />
                                     </Grid>
                                 </ControlTemplate>
@@ -52,75 +123,8 @@
                         </Setter>
                     </Style>
                 </TabItem.Style>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Click="Button_Click"
-                                Margin="2, 0"
-                                >
-                            <Button.ContextMenu>
-                                <ContextMenu StaysOpen="true" x:Name="ContextMenu">
-                                    <!--<MenuItem Header="Open" Icon="{StaticResource }"/>-->
-                                <MenuItem Header="Create">
-                                    <MenuItem.Icon>
-                                        <Image Source="{StaticResource PaperIcon24Source}" Width="24"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <MenuItem Header="Open">
-                                    <MenuItem.Icon>
-                                        <Image Source="{StaticResource OpenedFolderIcon24Source}" Width="25"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <MenuItem Header="Print">
-                                    <MenuItem.Icon>
-                                        <Image Source="{StaticResource PrintIcon25Source}" Width="24"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <MenuItem Header="Save">
-                                    <MenuItem.Icon>
-                                        <Image Source="{StaticResource SaveIcon24Source}" Width="24"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <MenuItem Header="Save as">
-                                    <MenuItem.Icon>
-                                        <Image Source="{StaticResource SaveAsIcon24Source}" Width="24"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                <MenuItem Header="Preferences">
-                                    <MenuItem.Icon>
-                                        <Image Source="{StaticResource OptionsIcon24Source}" Width="24"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
-                                    <!--<MenuItem Header="Recent Files">
-                                        <MenuItem Header="ReadMe.txt"/>
-                                        <MenuItem Header="Schedule.xls"/>
-                                    </MenuItem>-->
-                                </ContextMenu>
-                            </Button.ContextMenu>
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal" >
-                                    <Border Width="16">
-                                        <StaticResource ResourceKey="HomeIcon24"/>
-                                    </Border>
-                                    <!--<TextBlock VerticalAlignment="A">Home</TextBlock>-->
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button Margin="2, 0" Command="{x:Static ApplicationCommands.Undo}"
-                                            CommandTarget="{Binding ElementName=_richTextBox}">
-                            <Border Width="16">
-                                <StaticResource ResourceKey="UndoIcon24"/>
-                            </Border>
-                        </Button>
-                        <Button Margin="2, 0" Command="{x:Static ApplicationCommands.Redo}"
-                                            CommandTarget="{Binding ElementName=_richTextBox}">
-                            <Border Width="16">
-                                <StaticResource ResourceKey="RedoIcon24"/>
-                            </Border>
-                        </Button>
-                    </StackPanel>
-                </TabItem.Header>
-            </TabItem>
-            
+            </TabItem>-->
+
             <TabItem Header="Home">
                 <Border Padding="10">
                     <Border.Resources>
@@ -146,23 +150,23 @@
 
                                 <Button Grid.Column="0"
                                         Command="{x:Static ApplicationCommands.Paste}"
-                                        CommandTarget="{Binding ElementName=_richTextBox}">
+                                        CommandTarget="{Binding ElementName=DocumentTextBox}">
                                     <StackPanel >
                                         <Border Width="31" HorizontalAlignment="Center">
                                             <StaticResource ResourceKey="PasteIcon48"/>
                                         </Border>
-                                    <TextBlock HorizontalAlignment="Center">
+                                        <TextBlock HorizontalAlignment="Center">
                                         Paste
-                                    </TextBlock>
+                                        </TextBlock>
                                     </StackPanel>
                                 </Button>
-                                
+
                                 <StackPanel Grid.Column="1">
                                     <Button Command="{x:Static ApplicationCommands.Cut}"
-                                            CommandTarget="{Binding ElementName=_richTextBox}">
-                                        
+                                            CommandTarget="{Binding ElementName=DocumentTextBox}">
+
                                         <StackPanel Orientation="Horizontal">
-                                                <Border Width="12" VerticalAlignment="Center" Margin="0, 0, 2, 0">
+                                            <Border Width="12" VerticalAlignment="Center" Margin="0, 0, 2, 0">
                                                 <StaticResource ResourceKey="CutIcon24"/>
                                             </Border>
                                             <TextBlock VerticalAlignment="Center">
@@ -171,7 +175,7 @@
                                         </StackPanel>
                                     </Button>
                                     <Button Command="{x:Static ApplicationCommands.Copy}"
-                                            CommandTarget="{Binding ElementName=_richTextBox}">
+                                            CommandTarget="{Binding ElementName=DocumentTextBox}">
                                         <StackPanel Orientation="Horizontal">
                                             <Border Width="12" VerticalAlignment="Center" Margin="0, 0, 2, 0">
                                                 <StaticResource ResourceKey="CopyIcon24"/>
@@ -189,32 +193,32 @@
                         <DockPanel Style="{StaticResource DockStyle}">
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                                 <RibbonControlGroup>
-                                    
-                                <ComboBox ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
+
+                                    <ComboBox ItemsSource="{Binding Source={x:Static Fonts.SystemFontFamilies}}"
                                           SelectionChanged="ComboBox_SelectionChanged"
                                           Text="Select Font..."
                                           IsEditable="True"/>
-                                <ComboBox x:Name="_fontSize"
+                                    <ComboBox x:Name="FontSizeComboBox"
                                           
                                           Text="Size..."
                                           IsEditable="True"
-                                          SelectionChanged="_fontSize_SelectionChanged"
+                                          SelectionChanged="FontSize_SelectionChanged"
                                           ItemsSource="{Binding FontSizes}"/>
                                 </RibbonControlGroup>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                                 <RibbonButton Style="{StaticResource ToolButton}"
-                                        CommandTarget="{Binding ElementName=_richTextBox}"
+                                        CommandTarget="{Binding ElementName=DocumentTextBox}"
                                         Command="{x:Static EditingCommands.ToggleBold}">
                                     <StaticResource ResourceKey="BoldIcon24"/>
                                 </RibbonButton>
                                 <RibbonButton Style="{StaticResource ToolButton}"
-                                        CommandTarget="{Binding ElementName=_richTextBox}"
+                                        CommandTarget="{Binding ElementName=DocumentTextBox}"
                                         Command="{x:Static EditingCommands.ToggleItalic}">
                                     <StaticResource ResourceKey="ItalicIcon30"/>
                                 </RibbonButton>
                                 <RibbonButton Style="{StaticResource ToolButton}" 
-                                        CommandTarget="{Binding ElementName=_richTextBox}"
+                                        CommandTarget="{Binding ElementName=DocumentTextBox}"
                                         Command="{x:Static EditingCommands.ToggleUnderline}">
                                     <StaticResource ResourceKey="UnderlineIcon25"/>
                                 </RibbonButton>
@@ -223,19 +227,22 @@
                         </DockPanel>
                         <Separator/>
                         <DockPanel Style="{StaticResource DockStyle}">
-                            
+
                             <TextBlock Style="{StaticResource DockSub}">Paragraph</TextBlock>
                         </DockPanel>
                     </StackPanel>
                 </Border>
             </TabItem>
             <TabItem Header="Insert">
-                <TextBlock>Insert</TextBlock>
+                <StackPanel>
+                    <TextBlock>Insert</TextBlock>
+                </StackPanel>
             </TabItem>
         </TabControl>
 
-        <RichTextBox Grid.Row="2" x:Name="_richTextBox">
-            
+        <RichTextBox Grid.Row="3"
+                     x:Name="DocumentTextBox">
+
         </RichTextBox>
         <!--<TextBox Grid.Row="2">
             

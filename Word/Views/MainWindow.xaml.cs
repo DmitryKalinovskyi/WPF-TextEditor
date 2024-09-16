@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.Win32;
+using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,19 +12,33 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Word.ViewModels;
+using Wpf.Ui.Controls;
 
 namespace Word
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Wpf.Ui.Controls.FluentWindow
+    public partial class MainWindow : FluentWindow
     {
         public MainWindow()
         {
             InitializeComponent();
-            _fontSize.SelectedValue = _richTextBox.FontSize;
+            FontSizeComboBox.SelectedValue = DocumentTextBox.FontSize;
         }
+
+        private void SubscribeToViewModelEvents()
+        {
+            var viewModel = (MainWindowViewModel)DataContext;
+
+            if (viewModel is null) return;
+
+            // event subscription
+
+        }
+
+        #region UI
 
         private void TabItem_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -34,7 +50,7 @@ namespace Word
             ContextMenu.IsOpen = true;
         }
 
-        private void _fontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
@@ -44,12 +60,12 @@ namespace Word
             }
             catch (Exception ex) { }
 
-            _richTextBox.Focus();
+            DocumentTextBox.Focus();
         }
 
         private void ApplyPropertyToSelectedText(DependencyProperty dependencyProperty, object? value)
         {
-            _richTextBox.Selection.ApplyPropertyValue(dependencyProperty, value);
+            DocumentTextBox.Selection.ApplyPropertyValue(dependencyProperty, value);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -62,7 +78,33 @@ namespace Word
             }
             catch (Exception ex) { }
 
-            _richTextBox.Focus();
+            DocumentTextBox.Focus();
+        }
+
+        #endregion
+
+        private void MenuCreate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuPrint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuSave_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void MenuPreferences_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void _richTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            (DataContext as MainWindowViewModel).IsSaved = false;
         }
     }
 }
