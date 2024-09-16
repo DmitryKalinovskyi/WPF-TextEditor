@@ -53,8 +53,9 @@
                     </Style>
                 </TabItem.Style>
                 <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
                         <Button Click="Button_Click"
-                                Margin="10, 0"
+                                Margin="2, 0"
                                 >
                             <Button.ContextMenu>
                                 <ContextMenu StaysOpen="true" x:Name="ContextMenu">
@@ -104,6 +105,19 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
+                        <Button Margin="2, 0" Command="{x:Static ApplicationCommands.Undo}"
+                                            CommandTarget="{Binding ElementName=_richTextBox}">
+                            <Border Width="16">
+                                <StaticResource ResourceKey="UndoIcon24"/>
+                            </Border>
+                        </Button>
+                        <Button Margin="2, 0" Command="{x:Static ApplicationCommands.Redo}"
+                                            CommandTarget="{Binding ElementName=_richTextBox}">
+                            <Border Width="16">
+                                <StaticResource ResourceKey="RedoIcon24"/>
+                            </Border>
+                        </Button>
+                    </StackPanel>
                 </TabItem.Header>
             </TabItem>
             
