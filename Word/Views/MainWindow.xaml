@@ -6,14 +6,16 @@
         xmlns:local="clr-namespace:Word"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         xmlns:vm="clr-namespace:Word.ViewModels"
+                 xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="{Binding DocumentViewModel.Title}" Height="450" Width="800"
+                 
                  WindowStartupLocation="CenterScreen">
     <ui:FluentWindow.Resources>
-        <vm:MainWindowViewModel x:Key="mainWindowDataContext"/>
+        <vm:MainWindowViewModel x:Key="MainWindowViewModel"/>
     </ui:FluentWindow.Resources>
     <ui:FluentWindow.DataContext>
-        <StaticResource ResourceKey="mainWindowDataContext"/>
+        <StaticResource ResourceKey="MainWindowViewModel"/>
     </ui:FluentWindow.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -22,7 +24,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ui:TitleBar Title="MainWindow">
+        <ui:TitleBar Title="DeepEditor">
         </ui:TitleBar>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1">
@@ -30,15 +32,15 @@
                             Margin="2, 2"
                             >
                 <Button.ContextMenu>
-                    <ContextMenu StaysOpen="true" x:Name="ContextMenu" DataContext="{StaticResource mainWindowDataContext}">
+                    <ContextMenu StaysOpen="true" x:Name="ContextMenu" DataContext="{StaticResource MainWindowViewModel}">
                         <!--<MenuItem Header="Open" Icon="{StaticResource }"/>-->
-                        <!--<MenuItem Header="Create" Click="MenuCreate_Click">
+                        <MenuItem Header="Create" Command="{Binding DocumentViewModel.CreateNewCommand}">
                             <MenuItem.Icon>
                                 <Image Source="{StaticResource PaperIcon24Source}" Width="24"/>
                             </MenuItem.Icon>
-                        </MenuItem>-->
+                        </MenuItem>
                         <MenuItem Header="Open"
-                                            Command="{Binding OpenDocumentCommand}">
+                                            Command="{Binding DocumentViewModel.OpenDocumentCommand}">
                             <MenuItem.Icon>
                                 <Image Source="{StaticResource OpenedFolderIcon24Source}" Width="25"/>
                             </MenuItem.Icon>
@@ -48,13 +50,13 @@
                                     <Image Source="{StaticResource PrintIcon25Source}" Width="24"/>
                                 </MenuItem.Icon>
                             </MenuItem>-->
-                        <!--<MenuItem Header="Save" Click="MenuSave_Click" >
+                        <MenuItem Header="Save" Command="{Binding DocumentViewModel.SaveCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="{StaticResource SaveIcon24Source}" Width="24"/>
                                 </MenuItem.Icon>
-                            </MenuItem>-->
+                            </MenuItem>
                         <MenuItem Header="Save as"
-                                            Command="{Binding SaveAsCommand}">
+                                            Command="{Binding DocumentViewModel.SaveAsCommand}">
                             <MenuItem.Icon>
                                 <Image Source="{StaticResource SaveAsIcon24Source}" Width="24"/>
                             </MenuItem.Icon>
@@ -227,7 +229,28 @@
                         </DockPanel>
                         <Separator/>
                         <DockPanel Style="{StaticResource DockStyle}">
-
+                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                <RibbonButton Style="{StaticResource ToolButton}"
+        CommandTarget="{Binding ElementName=DocumentTextBox}"
+        Command="{x:Static EditingCommands.AlignLeft}">
+                                    <StaticResource ResourceKey="BoldIcon24"/>
+                                </RibbonButton>
+                                <RibbonButton Style="{StaticResource ToolButton}"
+        CommandTarget="{Binding ElementName=DocumentTextBox}"
+        Command="{x:Static EditingCommands.AlignCenter}">
+                                    <StaticResource ResourceKey="ItalicIcon30"/>
+                                </RibbonButton>
+                                <RibbonButton Style="{StaticResource ToolButton}" 
+        CommandTarget="{Binding ElementName=DocumentTextBox}"
+        Command="{x:Static EditingCommands.AlignRight}">
+                                    <StaticResource ResourceKey="UnderlineIcon25"/>
+                                </RibbonButton>
+                                <RibbonButton Style="{StaticResource ToolButton}" 
+CommandTarget="{Binding ElementName=DocumentTextBox}"
+Command="{x:Static EditingCommands.AlignJustify}">
+                                    <StaticResource ResourceKey="UnderlineIcon25"/>
+                                </RibbonButton>
+                            </StackPanel>
                             <TextBlock Style="{StaticResource DockSub}">Paragraph</TextBlock>
                         </DockPanel>
                     </StackPanel>
@@ -240,10 +263,14 @@
             </TabItem>
         </TabControl>
 
-        <RichTextBox Grid.Row="3"
-                     x:Name="DocumentTextBox">
-
-        </RichTextBox>
+        <toolkit:RichTextBox Grid.Row="3"
+                             IsEnabled="{Binding DocumentViewModel.IsEnabled}"
+                             x:Name="DocumentTextBox"
+                             Text="{Binding DocumentViewModel.Content}"
+                             Style="{StaticResource {x:Type RichTextBox}}"
+                             >
+            
+        </toolkit:RichTextBox>
         <!--<TextBox Grid.Row="2">
             
         </TextBox>-->

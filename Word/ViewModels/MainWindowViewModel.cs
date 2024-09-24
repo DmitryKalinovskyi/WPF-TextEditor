@@ -3,66 +3,29 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Printing;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
+using Word.Commands;
+using Word.Models;
 using Word.Services;
 
 namespace Word.ViewModels
 {
-    public class MainWindowViewModel: INotifyPropertyChanged
+    public class MainWindowViewModel : ViewModelBase
     {
-        private readonly MainWindow _view;
-
         public double[] FontSizes => _fontSizes;
+        
+        public DocumentViewModel DocumentViewModel { get; set; }
 
-        public bool IsSaved { get; set; }
-
-        private DocumentSevice documentSevice = new DocumentSevice();
-
-        public MainWindowViewModel() : this(Application.Current.MainWindow as MainWindow) { }
-
-        public MainWindowViewModel(MainWindow view)
+        public MainWindowViewModel()
         {
-            _view = view;
-
-            SubscribeToViewEvents();
-
-            // Initialize commands
-            SaveAsCommand = new Commands.RelayCommand((param) => SaveAs());
-            OpenDocumentCommand = new Commands.RelayCommand((param) => OpenDocument());
+            DocumentViewModel = new DocumentViewModel();
         }
-
-        private void SubscribeToViewEvents()
-        { 
-        }
-
-        #region Commands
-        public ICommand SaveAsCommand { get; set; }
-        public ICommand OpenDocumentCommand { get; set; }
-
-        public void SaveAs()
-        {
-            var document = _view.DocumentTextBox.Document;
-            documentSevice.SaveDocument(new TextRange(document.ContentStart, document.ContentEnd));
-        }
-
-        public void OpenDocument()
-        {
-            var document = _view.DocumentTextBox.Document;
-            documentSevice.OpenDocument(new TextRange(document.ContentStart, document.ContentEnd));
-        }
-        #endregion
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         private double[] _fontSizes = [3.0, 4.0, 5.0, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0,
 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0, 13.5, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0,

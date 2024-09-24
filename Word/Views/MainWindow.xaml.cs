@@ -101,10 +101,5 @@ namespace Word
         private void MenuPreferences_Click(object sender, RoutedEventArgs e)
         {
         }
-
-        private void _richTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            (DataContext as MainWindowViewModel).IsSaved = false;
-        }
     }
 }
