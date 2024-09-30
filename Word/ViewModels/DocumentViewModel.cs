@@ -1,4 +1,6 @@
 ﻿using Microsoft.Win32;
+using System.IO;
+using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using Word.Commands;
@@ -10,7 +12,8 @@ namespace Word.ViewModels
     public class DocumentViewModel : ViewModelBase
     {
         private DocumentRepository _documentRepository;
-        private DocumentModel? _documentModel;
+        private DocumentModel _documentModel;
+        private PrintService? _printService;
 
         // Dependencies [Path, IsSaved]
         public string Title
@@ -20,24 +23,21 @@ namespace Word.ViewModels
                 string result = "DeepEditor";
                 if(Path is not null)
                 {
-                    result += $": {Path}";
-                    if (!IsSaved) result += "*";
+                    result += $": {System.IO.Path.GetFileName(Path)}";
                 }
+                if (!IsSaved) result += "*";
                 return result;
             }
         }
 
         public string? Path
         {
-            get => _documentModel?.Path;
+            get => _documentModel.Path;
             set
             {
-                if(_documentModel is not null)
-                {
-                    _documentModel.Path = value;
-                    OnPropertyChanged(nameof(Path));
-                    OnPropertyChanged(nameof(Title));
-                }
+                _documentModel.Path = value;
+                OnPropertyChanged(nameof(Path));
+                OnPropertyChanged(nameof(Title));
             }
         }
 
@@ -60,30 +60,30 @@ namespace Word.ViewModels
 
         public string Content
         {
-            get => _documentModel?.Content ?? "";
+            get => _documentModel.Content ?? "";
             set
             {
-                if(_documentModel is not null)
-                {
-                    _documentModel.Content = value;
-                    IsSaved = false;
-                    OnPropertyChanged(nameof(Content));
-                }
+                _documentModel.Content = value;
+                IsSaved = false;
+                OnPropertyChanged(nameof(Content));
             }
         }
 
         public DocumentViewModel()
         {
             _documentRepository = new DocumentRepository();
+            _printService = new PrintService();
+            _documentModel = new DocumentModel();
 
             // Initialize commands
             SaveAsCommand = new RelayCommand((param) => SaveAs());
             SaveCommand = new RelayCommand((param) => Save());
             OpenDocumentCommand = new RelayCommand((param) => OpenDocument());
             CreateNewCommand = new RelayCommand((param) => CreateNew());
+            PrintCommand = new RelayCommand((param) => _printService.Print(_documentModel));
         }
 
-        public void UpdateModel(DocumentModel? model)
+        public void UpdateModel(DocumentModel model)
         {
             _documentModel = model;
             NotifyModelUpdate();
@@ -104,16 +104,29 @@ namespace Word.ViewModels
         public ICommand SaveCommand { get; set; }
         public ICommand OpenDocumentCommand { get; set; }
         public ICommand CreateNewCommand { get; set; }
+        public ICommand PrintCommand { get; set; }
 
         public void CreateNew()
         {
-            if(_documentModel is not null)
+            if(_documentModel is not null && !IsSaved)
             {
                 // ask if we want to save our file.
+                var result = MessageBox.Show("Want to save your changes?", "DeepEditor",
+                    MessageBoxButton.YesNoCancel, 
+                    MessageBoxImage.Warning);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    Save();
+                }
+                else if (result == MessageBoxResult.Cancel)
+                {
+                    return;
+                }
             }
 
             UpdateModel(new DocumentModel());
+            IsSaved = true;
         }
 
         public void Save()
@@ -151,8 +164,8 @@ namespace Word.ViewModels
             };
 
             _documentRepository.SaveDocument(documentModelResult);
-            IsSaved = true;
             UpdateModel(documentModelResult);
+            IsSaved = true;
         }
 
         public void OpenDocument()
@@ -170,6 +183,7 @@ namespace Word.ViewModels
             var documentModel = _documentRepository.OpenDocument(dialog.FileName);
             if(documentModel is not null) 
             UpdateModel(documentModel);
+            IsSaved = true;
         }
 #endregion
 

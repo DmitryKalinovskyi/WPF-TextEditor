@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Word.ViewModels;
+using Word.Views;
 using Wpf.Ui.Controls;
 
 namespace Word
@@ -81,25 +82,13 @@ namespace Word
             DocumentTextBox.Focus();
         }
 
+        private void ReferenceButton_Click(object sender, RoutedEventArgs e)
+        {
+            var referenceWindow = new ReferenceWindow();
+            referenceWindow.Owner = this;
+            referenceWindow.Show();
+        }
+
         #endregion
-
-        private void MenuCreate_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MenuPrint_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void MenuSave_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void MenuPreferences_Click(object sender, RoutedEventArgs e)
-        {
-        }
     }
 }

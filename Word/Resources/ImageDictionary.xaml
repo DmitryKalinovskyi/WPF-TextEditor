@@ -47,6 +47,12 @@
     <ImageSource x:Key="UndoIcon48Source">../Images/icons8-undo-48.png</ImageSource>
     <ImageSource x:Key="UndoIcon96Source">../Images/icons8-undo-96.png</ImageSource>
 
+    <ImageSource x:Key="AlignLeftIcon24Source">../Images/icons8-align-left-24.png</ImageSource>
+    <ImageSource x:Key="AlignRightIcon24Source">../Images/icons8-align-right-24.png</ImageSource>
+    <ImageSource x:Key="AlignCenterIcon24Source">../Images/icons8-align-center-24.png</ImageSource>
+    <ImageSource x:Key="AlignJustifyIcon24Source">../Images/icons8-align-justify-24.png</ImageSource>
+    <ImageSource x:Key="ReferenceIcon48Source">../Images/icons8-reference-48.png</ImageSource>
+
     <!-- Image resources using the ImageSource paths -->
     <Image x:Key="UndoIcon24" Source="{StaticResource UndoIcon24Source}"/>
     <Image x:Key="UndoIcon48" Source="{StaticResource UndoIcon48Source}"/>
@@ -131,4 +137,11 @@
     <Image x:Key="SaveAsIcon24" Source="{StaticResource SaveAsIcon24Source}"/>
     <Image x:Key="SaveAsIcon48" Source="{StaticResource SaveAsIcon48Source}"/>
     <Image x:Key="SaveAsIcon96" Source="{StaticResource SaveAsIcon96Source}"/>
+
+    <Image x:Key="AlignCenterIcon24" Source="{StaticResource AlignCenterIcon24Source}"/>
+    <Image x:Key="AlignLeftIcon24" Source="{StaticResource AlignLeftIcon24Source}"/>
+    <Image x:Key="AlignRightIcon24" Source="{StaticResource AlignRightIcon24Source}"/>
+    <Image x:Key="AlignJustifyIcon24" Source="{StaticResource AlignJustifyIcon24Source}"/>
+    
+    <Image x:Key="ReferenceIcon48" Source="{StaticResource ReferenceIcon48Source}"/>
 </ResourceDictionary>

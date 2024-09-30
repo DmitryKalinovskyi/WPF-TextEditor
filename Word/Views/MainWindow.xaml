@@ -8,7 +8,7 @@
         xmlns:vm="clr-namespace:Word.ViewModels"
                  xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="{Binding DocumentViewModel.Title}" Height="450" Width="800"
+         Height="450" Width="800"
                  
                  WindowStartupLocation="CenterScreen">
     <ui:FluentWindow.Resources>
@@ -24,7 +24,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ui:TitleBar Title="DeepEditor">
+        <ui:TitleBar Title="{Binding DocumentViewModel.Title}">
         </ui:TitleBar>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1">
@@ -45,11 +45,11 @@
                                 <Image Source="{StaticResource OpenedFolderIcon24Source}" Width="25"/>
                             </MenuItem.Icon>
                         </MenuItem>
-                        <!--<MenuItem Header="Print" Click="MenuPrint_Click" >
+                        <MenuItem Header="Print" Command="{Binding DocumentViewModel.PrintCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="{StaticResource PrintIcon25Source}" Width="24"/>
                                 </MenuItem.Icon>
-                            </MenuItem>-->
+                            </MenuItem>
                         <MenuItem Header="Save" Command="{Binding DocumentViewModel.SaveCommand}">
                                 <MenuItem.Icon>
                                     <Image Source="{StaticResource SaveIcon24Source}" Width="24"/>
@@ -233,22 +233,22 @@
                                 <RibbonButton Style="{StaticResource ToolButton}"
         CommandTarget="{Binding ElementName=DocumentTextBox}"
         Command="{x:Static EditingCommands.AlignLeft}">
-                                    <StaticResource ResourceKey="BoldIcon24"/>
+                                    <StaticResource ResourceKey="AlignLeftIcon24"/>
                                 </RibbonButton>
                                 <RibbonButton Style="{StaticResource ToolButton}"
         CommandTarget="{Binding ElementName=DocumentTextBox}"
         Command="{x:Static EditingCommands.AlignCenter}">
-                                    <StaticResource ResourceKey="ItalicIcon30"/>
+                                    <StaticResource ResourceKey="AlignCenterIcon24"/>
                                 </RibbonButton>
                                 <RibbonButton Style="{StaticResource ToolButton}" 
         CommandTarget="{Binding ElementName=DocumentTextBox}"
         Command="{x:Static EditingCommands.AlignRight}">
-                                    <StaticResource ResourceKey="UnderlineIcon25"/>
+                                    <StaticResource ResourceKey="AlignRightIcon24"/>
                                 </RibbonButton>
                                 <RibbonButton Style="{StaticResource ToolButton}" 
 CommandTarget="{Binding ElementName=DocumentTextBox}"
 Command="{x:Static EditingCommands.AlignJustify}">
-                                    <StaticResource ResourceKey="UnderlineIcon25"/>
+                                    <StaticResource ResourceKey="AlignJustifyIcon24"/>
                                 </RibbonButton>
                             </StackPanel>
                             <TextBlock Style="{StaticResource DockSub}">Paragraph</TextBlock>
@@ -256,21 +256,103 @@ Command="{x:Static EditingCommands.AlignJustify}">
                     </StackPanel>
                 </Border>
             </TabItem>
-            <TabItem Header="Insert">
-                <StackPanel>
-                    <TextBlock>Insert</TextBlock>
-                </StackPanel>
+            <!--<TabItem Header="Document">
+                <Border Padding="10">
+                    <Border.Resources>
+                        <Style x:Key="DockStyle" TargetType="DockPanel">
+                            <Setter Property="Margin" Value="10, 0"/>
+                            <Setter Property="VerticalAlignment" Value="Stretch"/>
+                            <Setter Property="LastChildFill" Value="False"/>
+                        </Style>
+                        <Style x:Key="DockSub" TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="DockPanel.Dock" Value="Bottom"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </Border.Resources>
+                    <StackPanel Orientation="Horizontal">
+                        <DockPanel Style="{StaticResource DockStyle}">
+                            <Grid DockPanel.Dock="Top" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    Margin="2, 0"
+                                    VerticalAlignment="Center"
+                                            >Width: </TextBlock>
+                                <TextBox Grid.Column="1"
+                                         Text="{Binding Path=Width, ElementName=DocumentTextBox}"
+                                         />
+                                <TextBlock Grid.Row="1" 
+                                           Margin="2, 0"
+                                           VerticalAlignment="Center">Height: </TextBlock>
+                                <TextBox Grid.Row="1"
+                                         Text="{Binding Path=Height, ElementName=DocumentTextBox}"
+                                         
+                                            Grid.Column="1"></TextBox>
+                            </Grid>
+                            --><!--<TextBlock DockPanel.Dock="Top">Hello</TextBlock>--><!--
+                            <TextBlock Style="{StaticResource DockSub}">Page parameters</TextBlock>
+                        </DockPanel>
+                    </StackPanel>
+                </Border>
+            </TabItem-->
+            <TabItem Header="Reference">
+                <Border Padding="10">
+                    <Border.Resources>
+                        <Style x:Key="DockStyle" TargetType="DockPanel">
+                            <Setter Property="Margin" Value="10, 0"/>
+                            <Setter Property="VerticalAlignment" Value="Stretch"/>
+                            <Setter Property="LastChildFill" Value="False"/>
+                        </Style>
+                        <Style x:Key="DockSub" TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Setter Property="FontSize" Value="12"/>
+                            <Setter Property="DockPanel.Dock" Value="Bottom"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </Border.Resources>
+                    <StackPanel Orientation="Horizontal">
+                        <DockPanel Style="{StaticResource DockStyle}">
+                            <Grid DockPanel.Dock="Top" >
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Click="ReferenceButton_Click">
+                                            <StackPanel>
+                                                <Border Height="36">
+                                                    <StaticResource ResourceKey="ReferenceIcon48"/>
+                                                </Border>
+                                                <TextBlock>Reference</TextBlock>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                    <TextBlock Style="{StaticResource DockSub}">Help</TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </DockPanel>
+                    </StackPanel>
+                </Border>
             </TabItem>
         </TabControl>
 
-        <toolkit:RichTextBox Grid.Row="3"
-                             IsEnabled="{Binding DocumentViewModel.IsEnabled}"
-                             x:Name="DocumentTextBox"
-                             Text="{Binding DocumentViewModel.Content}"
-                             Style="{StaticResource {x:Type RichTextBox}}"
-                             >
+        <Grid Grid.Row="3">
+            <!--Here we are using two way binding that updates content after each change, that may reduce performance-->
+            <toolkit:RichTextBox
+                HorizontalAlignment="Center"
+                                 IsEnabled="{Binding DocumentViewModel.IsEnabled}"
+                                 x:Name="DocumentTextBox"
+                                 Text="{Binding DocumentViewModel.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource {x:Type RichTextBox}}"
+                                 >
             
-        </toolkit:RichTextBox>
+            </toolkit:RichTextBox>
+        </Grid>
         <!--<TextBox Grid.Row="2">
             
         </TextBox>-->

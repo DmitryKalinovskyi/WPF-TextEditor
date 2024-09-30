@@ -1,0 +1,130 @@
+﻿<ui:FluentWindow x:Class="Word.Views.ReferenceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 WindowStartupLocation="CenterOwner"
+        Title="How to Use DeepEditor" Height="450" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ui:TitleBar Title="How to Use DeepEditor"/>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <StackPanel Margin="10">
+                <!-- Title -->
+                <TextBlock FontSize="20" FontWeight="Bold" Margin="0,0,0,10">
+                    Welcome to DeepEditor!
+                </TextBlock>
+
+                <!-- Introduction -->
+                <TextBlock Margin="0,10,0,0" TextWrapping="Wrap">
+                    DeepEditor is a powerful and intuitive text editing tool that allows you to create, edit, and format text documents easily. Here is a quick guide to help you get started with the various functionalities available in the editor.
+                </TextBlock>
+
+                <!-- Home Tab Features -->
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="0,20,0,10">
+                    Home Tab Features:
+                </TextBlock>
+
+                <!-- Clipboard Section -->
+                <TextBlock FontSize="14" FontWeight="Bold" Margin="10,10,0,0">
+                    Clipboard Section:
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Paste: Paste text from your clipboard into the document at the cursor’s position.</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Cut: Remove selected text and place it into the clipboard for pasting elsewhere.</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Copy: Copy the selected text to the clipboard.</TextBlock>
+
+                <!-- Fonts Section -->
+                <TextBlock FontSize="14" FontWeight="Bold" Margin="10,10,0,0">
+                    Fonts Section:
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Select Font: Choose a font from the dropdown to apply to the selected text or to text typed after selection.</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Font Size: Choose a font size from the dropdown to increase or decrease text size.</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Bold (B): Click to make selected text bold.</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Italic (I): Click to make selected text italic.</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Underline (U): Click to underline the selected text.</TextBlock>
+
+                <!-- Paragraph Section -->
+                <TextBlock FontSize="14" FontWeight="Bold" Margin="10,10,0,0">
+                    Paragraph Section:
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Align Left: Align selected text or paragraph to the left.</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Center Align: Align selected text or paragraph to the center.</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Align Right: Align selected text or paragraph to the right.</TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">- Justify: Align text to both left and right margins for justified text.</TextBlock>
+
+                <!-- Saving and Loading Files -->
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="0,20,0,10">
+                    Saving and Loading Files:
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    DeepEditor allows you to save your work and load previously saved documents.
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - To Save a File: Navigate to the `File` menu in the top left corner and click `Save`. Choose a location on your device and enter a file name to save your document.
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - To Load a File: Click `Open` in the `File` menu. Browse for the document you want to load and click `Open`. The content will appear in the editor.
+                </TextBlock>
+
+                <!-- Other Key Functionalities -->
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="0,20,0,10">
+                    Other Key Functionalities:
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Undo/Redo: Located at the top of the `Home` tab, use these buttons to undo recent changes or redo undone changes.
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Tabs for Multiple Documents: You can work on multiple documents by opening them in different tabs. Simply click the "+" icon to add a new document tab.
+                </TextBlock>
+
+                <!-- Customizing the Editor -->
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="0,20,0,10">
+                    Customizing the Editor:
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Theme: You can switch between light and dark modes from the `Settings` menu to customize your editing environment.
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Auto-save: Enable auto-save to automatically save your document after a set interval. You can adjust the interval in the `Settings` menu.
+                </TextBlock>
+
+                <!-- Keyboard Shortcuts -->
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="0,20,0,10">
+                    Using Keyboard Shortcuts:
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Ctrl + C: Copy
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Ctrl + V: Paste
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Ctrl + X: Cut
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Ctrl + Z: Undo
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Ctrl + Y: Redo
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Ctrl + S: Save
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    - Ctrl + O: Open
+                </TextBlock>
+
+                <!-- Thank You Message -->
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="0,20,0,10">
+                    Thank you for using DeepEditor!
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="20,0,0,0">
+                    We hope it enhances your productivity and helps you create stunning documents.
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</ui:FluentWindow>
