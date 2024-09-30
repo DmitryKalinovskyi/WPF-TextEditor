@@ -1,25 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Printing;
-using System.Runtime.InteropServices.Marshalling;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Input;
-using Word.Commands;
-using Word.Models;
-using Word.Services;
-
-namespace Word.ViewModels
+﻿namespace Word.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
         public double[] FontSizes => _fontSizes;
-        
+
         public DocumentViewModel DocumentViewModel { get; set; }
 
         public MainWindowViewModel()

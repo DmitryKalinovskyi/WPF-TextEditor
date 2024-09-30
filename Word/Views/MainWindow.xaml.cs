@@ -1,17 +1,7 @@
-﻿using Microsoft.Win32;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Ribbon;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Word.ViewModels;
 using Word.Views;
 using Wpf.Ui.Controls;
@@ -56,8 +46,8 @@ namespace Word
             try
             {
                 object? fontSize = e.AddedItems[0];
-                if(fontSize != null)
-                ApplyPropertyToSelectedText(FontSizeProperty, fontSize);
+                if (fontSize != null)
+                    ApplyPropertyToSelectedText(FontSizeProperty, fontSize);
             }
             catch (Exception ex) { }
 
@@ -74,7 +64,7 @@ namespace Word
             try
             {
                 FontFamily? editValue = (FontFamily?)e.AddedItems[0];
-                if(editValue != null) 
+                if (editValue != null)
                     ApplyPropertyToSelectedText(FontFamilyProperty, editValue);
             }
             catch (Exception ex) { }

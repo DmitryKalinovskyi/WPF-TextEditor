@@ -4,7 +4,7 @@ namespace Word.Commands
 {
     public class RelayCommand : ICommand
     {
-        private readonly Predicate<object?> _canExecute; 
+        private readonly Predicate<object?> _canExecute;
         private readonly Action<object?> _execute;
 
         public RelayCommand(Action<object?> execute)

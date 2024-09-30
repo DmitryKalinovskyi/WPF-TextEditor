@@ -256,53 +256,6 @@ Command="{x:Static EditingCommands.AlignJustify}">
                     </StackPanel>
                 </Border>
             </TabItem>
-            <!--<TabItem Header="Document">
-                <Border Padding="10">
-                    <Border.Resources>
-                        <Style x:Key="DockStyle" TargetType="DockPanel">
-                            <Setter Property="Margin" Value="10, 0"/>
-                            <Setter Property="VerticalAlignment" Value="Stretch"/>
-                            <Setter Property="LastChildFill" Value="False"/>
-                        </Style>
-                        <Style x:Key="DockSub" TargetType="TextBlock">
-                            <Setter Property="Foreground" Value="Gray"/>
-                            <Setter Property="FontSize" Value="12"/>
-                            <Setter Property="DockPanel.Dock" Value="Bottom"/>
-                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                        </Style>
-                    </Border.Resources>
-                    <StackPanel Orientation="Horizontal">
-                        <DockPanel Style="{StaticResource DockStyle}">
-                            <Grid DockPanel.Dock="Top" >
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock 
-                                    Margin="2, 0"
-                                    VerticalAlignment="Center"
-                                            >Width: </TextBlock>
-                                <TextBox Grid.Column="1"
-                                         Text="{Binding Path=Width, ElementName=DocumentTextBox}"
-                                         />
-                                <TextBlock Grid.Row="1" 
-                                           Margin="2, 0"
-                                           VerticalAlignment="Center">Height: </TextBlock>
-                                <TextBox Grid.Row="1"
-                                         Text="{Binding Path=Height, ElementName=DocumentTextBox}"
-                                         
-                                            Grid.Column="1"></TextBox>
-                            </Grid>
-                            --><!--<TextBlock DockPanel.Dock="Top">Hello</TextBlock>--><!--
-                            <TextBlock Style="{StaticResource DockSub}">Page parameters</TextBlock>
-                        </DockPanel>
-                    </StackPanel>
-                </Border>
-            </TabItem-->
             <TabItem Header="Reference">
                 <Border Padding="10">
                     <Border.Resources>

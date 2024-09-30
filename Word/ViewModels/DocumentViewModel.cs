@@ -1,7 +1,5 @@
 ﻿using Microsoft.Win32;
-using System.IO;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
 using Word.Commands;
 using Word.Models;
@@ -21,7 +19,7 @@ namespace Word.ViewModels
             get
             {
                 string result = "DeepEditor";
-                if(Path is not null)
+                if (Path is not null)
                 {
                     result += $": {System.IO.Path.GetFileName(Path)}";
                 }
@@ -108,11 +106,11 @@ namespace Word.ViewModels
 
         public void CreateNew()
         {
-            if(_documentModel is not null && !IsSaved)
+            if (_documentModel is not null && !IsSaved)
             {
                 // ask if we want to save our file.
                 var result = MessageBox.Show("Want to save your changes?", "DeepEditor",
-                    MessageBoxButton.YesNoCancel, 
+                    MessageBoxButton.YesNoCancel,
                     MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
@@ -181,11 +179,11 @@ namespace Word.ViewModels
             }
 
             var documentModel = _documentRepository.OpenDocument(dialog.FileName);
-            if(documentModel is not null) 
-            UpdateModel(documentModel);
+            if (documentModel is not null)
+                UpdateModel(documentModel);
             IsSaved = true;
         }
-#endregion
+        #endregion
 
     }
 }

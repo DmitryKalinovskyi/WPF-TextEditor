@@ -13,7 +13,7 @@ namespace Word.Services
             }
 
             using var file = new FileStream(documentModel.Path, FileMode.Create);
-            using var streamWriter = new StreamWriter(file);  
+            using var streamWriter = new StreamWriter(file);
             streamWriter.Write(documentModel.Content);
         }
 
